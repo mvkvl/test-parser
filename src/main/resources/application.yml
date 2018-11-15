@@ -1,0 +1,13 @@
+logging:
+  file: test-parser.log
+  pattern:
+    console: ""
+    file: "%d %-5level [%thread] %logger : %msg%n"    
+  level:
+    console: 'OFF'
+    root: ERROR
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+    test.parser: INFO
+
+  

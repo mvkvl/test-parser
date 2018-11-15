@@ -1,0 +1,8 @@
+**/*generator*
+*.log*
+target
+.settings
+.project
+.classpath
+input*
+**/application.properties
