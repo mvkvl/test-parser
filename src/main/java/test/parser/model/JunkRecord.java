@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  *  numbers in output, so they are declared as 'int' and 'float' in Normal record;
  *  
  *  sure we could stick to only one class, if we won't use Jackson and automatic 
- *  conversion to JSON)
+ *  conversion to/from JSON)
  * 
  * @author kami
  *
@@ -45,7 +45,7 @@ public class JunkRecord extends AbstractRecord {
 
 	@Override
 	public Record fromString(String record) {
-		String[] parts = record.split(",");
+		String[] parts = record.split(",", 4);  // maximum split into 4 parts (as comment can contain comma) 
 		this.orderId  = parts[0]; 
 		this.amount   = parts[1];
 		this.currency = parts[2];

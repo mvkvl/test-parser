@@ -19,7 +19,7 @@ public class ParserFabric {
 		//     return new XLSXParser();
 		
 		// unsupported file type passed - throw an error 
-		throw new UnsupportedFileTypeError("file type 'type'");
+		throw new UnsupportedFileTypeError("unsupported input file passed: file type 'type'");
 	}
 
 }

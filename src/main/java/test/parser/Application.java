@@ -3,7 +3,6 @@ package test.parser;
 import static java.lang.System.exit;
 
 import java.util.Arrays;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
@@ -26,19 +25,9 @@ public class Application implements CommandLineRunner {
     }
 
     public void run(String... args) throws Exception {
-    	List<String> inputFileNames = Arrays.asList(args);
-    	inputFileNames.parallelStream()
-    				  .forEach(fileParserService::parse);
+    	Arrays.asList(args).parallelStream()
+    				       .forEach(fileParserService::parse);
         exit(0);
     }
 
 }
-
-
-
-//FileUtils.listFiles(new File("."), new WildcardFileFilter("*input*"), null)
-//.parallelStream()
-//.forEach(f -> fileParserService.parse(f.getName()));
-//List<File> list = Arrays.asList(new File("input001.json"));
-//list.stream().forEach(f -> fileParserService.parse(f.getName()));
-

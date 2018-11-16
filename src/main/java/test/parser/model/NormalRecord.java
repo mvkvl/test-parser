@@ -51,8 +51,12 @@ public class NormalRecord extends AbstractRecord {
 		}
 	}
 
+	
+	// here we throw an error on first parsing error
+	// but if needed, we can accumulate all the errors
+	// and return them in exception message
 	public Record fromString(String record) {
-		String[] parts = record.split(",");
+		String[] parts = record.split(",", 4); // maximum split into 4 parts (as comment can contain comma)
 		try {
 			this.orderId = Integer.parseInt(parts[0]);} 
 		catch (NumberFormatException ex) {

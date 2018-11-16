@@ -10,4 +10,3 @@ logging:
     org.hibernate: ERROR
     test.parser: INFO
 
-  

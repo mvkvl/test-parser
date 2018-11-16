@@ -3,6 +3,8 @@ package test.parser.service;
 import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import test.parser.parser.ParserFabric;
@@ -16,6 +18,8 @@ import test.parser.parser.ParserFabric;
 @Service
 public class FileParserService {
 
+	Logger logger = LoggerFactory.getLogger(FileParserService.class);
+	
 	/**
 	 * parse given file with needed parser
 	 * (needed parser is detected by file extension)
@@ -27,8 +31,10 @@ public class FileParserService {
     	File file = new File(fileName);
     	if(file.exists() && !file.isDirectory()) { 
     		new ParserFabric().getParser(FilenameUtils.getExtension(fileName)).parse(fileName);
+    		logger.info("File " + fileName + " parsed successfully");
+    	} else {
+    		logger.error("File " + fileName + " not found");
     	}
-    	
     }
-
+    
 }
