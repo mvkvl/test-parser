@@ -4,5 +4,6 @@ target
 .settings
 .project
 .classpath
-input*
+input*.csv
+input*.json
 **/application.properties
