@@ -46,10 +46,14 @@ public class JunkRecord extends AbstractRecord {
 	@Override
 	public Record fromString(String record) {
 		String[] parts = record.split(",", 4);  // maximum split into 4 parts (as comment can contain comma) 
-		this.orderId  = parts[0]; 
-		this.amount   = parts[1];
-		this.currency = parts[2];
-		this.comment  = parts[3];
+		if (parts.length > 0)
+			this.orderId  = parts[0]; 
+		if (parts.length > 1)
+			this.amount   = parts[1];
+		if (parts.length > 2)
+			this.currency = parts[2];
+		if (parts.length > 3)
+			this.comment  = parts[3];
 		return this;
 	}
 	

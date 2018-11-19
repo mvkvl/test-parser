@@ -25,8 +25,8 @@ public class Application implements CommandLineRunner {
     }
 
     public void run(String... args) throws Exception {
-    	Arrays.asList(args).parallelStream()
-    				       .forEach(fileParserService::parse);
+        Arrays.asList(args).parallelStream()
+                           .forEach(fileParserService::parse);
         exit(0);
     }
 

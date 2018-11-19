@@ -57,22 +57,40 @@ public class NormalRecord extends AbstractRecord {
 	// and return them in exception message
 	public Record fromString(String record) {
 		String[] parts = record.split(",", 4); // maximum split into 4 parts (as comment can contain comma)
-		try {
-			this.orderId = Integer.parseInt(parts[0]);} 
-		catch (NumberFormatException ex) {
-			throw new InputRecordError("orderId is not a number");}
-		try {
-			this.amount = Float.parseFloat(parts[1]);}
-		catch (NumberFormatException ex) {
-			throw new InputRecordError("amount is not a number");}
-		currency = parts[2];
-		if (currency == null || currency.isEmpty())
-			throw new InputRecordError("currency not set");
-		if (!supportedCurrencies.contains(currency.toUpperCase()))
-			throw new InputRecordError("currency not supported");
-		comment = parts[3];
-		if (comment == null || comment.isEmpty())
-			throw new InputRecordError("comment not set");
+
+		if (parts.length > 0)
+			try {
+				this.orderId = Integer.parseInt(parts[0]);} 
+			catch (NumberFormatException ex) {
+				throw new InputRecordError("orderId '" + parts[0] +"' is not a number");}
+		
+		if (parts.length > 1)
+			try {
+				this.amount = Float.parseFloat(parts[1]);}
+			catch (NumberFormatException ex) {
+				throw new InputRecordError("amount '" + parts[1] + "' is not a number");}
+
+		if (parts.length > 2) {
+			currency = parts[2];
+			if (currency == null || currency.isEmpty())
+				throw new InputRecordError("currency not set");
+			if (!supportedCurrencies.contains(currency.toUpperCase()))
+				throw new InputRecordError("currency '" + parts[2] + "' not supported");
+
+			// if this a JSON parsed string check for "null"
+			if ("null".equalsIgnoreCase(currency))
+				currency = null;
+		}
+		
+		if (parts.length > 3) {
+			comment = parts[3];
+			if ("null".equalsIgnoreCase(comment))
+				comment = null;
+			
+			// if this a JSON parsed string check for "null"
+			if (comment == null || comment.isEmpty())
+				throw new InputRecordError("comment not set");
+		}
 
 		return this;
 	}

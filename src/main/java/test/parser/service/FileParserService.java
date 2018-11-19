@@ -18,23 +18,23 @@ import test.parser.parser.ParserFabric;
 @Service
 public class FileParserService {
 
-	Logger logger = LoggerFactory.getLogger(FileParserService.class);
-	
-	/**
-	 * parse given file with needed parser
-	 * (needed parser is detected by file extension)
-	 * 
-	 * @param file
-	 */
+    Logger logger = LoggerFactory.getLogger(FileParserService.class);
+
+    /**
+     * parse given file with needed parser
+     * (needed parser is detected by file extension)
+     * 
+     * @param file
+     */
     public void parse(String fileName) {
-    	// if file exists, parse it
-    	File file = new File(fileName);
-    	if(file.exists() && !file.isDirectory()) { 
-    		new ParserFabric().getParser(FilenameUtils.getExtension(fileName)).parse(fileName);
-    		logger.info("File " + fileName + " parsed successfully");
-    	} else {
-    		logger.error("File " + fileName + " not found");
-    	}
+        // if file exists, parse it
+        File file = new File(fileName);
+        if(file.exists() && !file.isDirectory()) { 
+            new ParserFabric().getParser(FilenameUtils.getExtension(fileName)).parse(fileName);
+            logger.info("File " + fileName + " parsed successfully");
+        } else {
+            logger.error("File " + fileName + " not found");
+        }
     }
-    
+
 }
